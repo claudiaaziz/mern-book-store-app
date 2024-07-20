@@ -6,7 +6,7 @@ export default function BackButton({ destination = '/' }) {
         <div className='flex'>
             <Link
                 to={destination}
-                className='text-pink-400 py-1 rounded-lg w-fit'
+                className='text-pink-400 hover:text-pink-500 py-1 rounded-lg w-fit'
             >
                 <BsArrowLeft className='text-4xl' />
             </Link>

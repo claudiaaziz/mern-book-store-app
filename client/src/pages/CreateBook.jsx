@@ -46,7 +46,6 @@ export default function CreateBook() {
                 onSubmit={handleCreateBook}
                 className='flex flex-col border-2 border-pink-50 rounded-xl w-[600px] p-4 mx-auto'
             >
-
                 <div className='my-4'>
                     <label
                         htmlFor='title'
@@ -96,7 +95,7 @@ export default function CreateBook() {
                     />
                 </div>
 
-                <button className='p-2 bg-pink-400 m-8 text-white rounded-full'>
+                <button className='p-2 bg-pink-400 hover:bg-pink-500 m-8 text-white rounded-full'>
                     Create
                 </button>
             </form>
