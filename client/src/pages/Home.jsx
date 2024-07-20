@@ -24,7 +24,7 @@ export default function Home() {
             <div className='flex justify-between items-center'>
                 <h1 className='text-3xl my-8'>Book List</h1>
                 <Link to='/books/create'>
-                    <IoIosAdd className='text-pink-200 text-5xl' />
+                    <IoIosAdd className='text-pink-400 text-5xl' />
                 </Link>
             </div>
             {isLoading ? (
@@ -66,10 +66,10 @@ export default function Home() {
                                 <td>
                                     <div className='flex justify-center gap-x-4'>
                                         <Link to={`/books/details/${book._id}`}>
-                                            <BsInfoCircle className='text-2xl text-green-800' />
+                                            <BsInfoCircle className='text-2xl text-gray-200' />
                                         </Link>
                                         <Link to={`/books/update/${book._id}`}>
-                                            <AiOutlineEdit className='text-2xl text-yellow-600' />
+                                            <AiOutlineEdit className='text-2xl text-amber-200' />
                                         </Link>
                                         <Link to={`/books/delete/${book._id}`}>
                                             <MdOutlineDelete className='text-2xl text-red-600' />
