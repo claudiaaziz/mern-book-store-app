@@ -3,16 +3,15 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { BsInfoCircle } from 'react-icons/bs';
-import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
+import { MdOutlineDelete } from 'react-icons/md';
+import { IoIosAdd } from "react-icons/io";
 import Spinner from '../components/Spinner';
 
 export default function Home() {
+    const [isLoading, setIsLoading] = useState(true);
     const [books, setBooks] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        setIsLoading(true);
-
         axios
             .get('http://localhost:5006/api/books')
             .then((res) => setBooks(res.data.data))
@@ -25,7 +24,7 @@ export default function Home() {
             <div className='flex justify-between items-center'>
                 <h1 className='text-3xl my-8'>Book List</h1>
                 <Link to='/books/create'>
-                    <MdOutlineAddBox className='text-sky-800 text-4xl' />
+                    <IoIosAdd className='text-pink-200 text-5xl' />
                 </Link>
             </div>
             {isLoading ? (
@@ -34,36 +33,34 @@ export default function Home() {
                 <table className='w-full border-separate border-spacing-2'>
                     <thead>
                         <tr>
-                            <th className='border border-slate-600 rounded-md'>
+                            <th className='border border-pink-200 rounded-md'>
                                 No
                             </th>
-                            <th className='border border-slate-600 rounded-md'>
+                            <th className='border border-pink-200 rounded-md'>
                                 Title
                             </th>
-                            <th className='border border-slate-600 rounded-md max-md:hidden'>
+                            <th className='border border-pink-200 rounded-md max-md:hidden'>
                                 Author
                             </th>
-                            <th className='border border-slate-600 rounded-md max-md:hidden'>
+                            <th className='border border-pink-200 rounded-md max-md:hidden'>
                                 Publish Year
                             </th>
-                            <th>
-                                Options
-                            </th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tbody>
                         {books.map((book, idx) => (
                             <tr key={book._id} className='h-8'>
-                                <td className='border border-slate-700 rounded-md text-center'>
+                                <td className='border border-pink-200 rounded-md text-center'>
                                     {idx + 1}
                                 </td>
-                                <td className='border border-slate-700 rounded-md text-center'>
+                                <td className='border border-pink-200 rounded-md text-center'>
                                     {book.title}
                                 </td>
-                                <td className='border border-slate-700 rounded-md text-center max-md:hidden'>
+                                <td className='border border-pink-200 rounded-md text-center max-md:hidden'>
                                     {book.author}
                                 </td>
-                                <td className='border border-slate-700 rounded-md text-center max-md:hidden'>
+                                <td className='border border-pink-200 rounded-md text-center max-md:hidden'>
                                     {book.publishYear}
                                 </td>
                                 <td>
