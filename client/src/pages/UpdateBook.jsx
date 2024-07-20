@@ -3,11 +3,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
+import { useSnackbar } from 'notistack';
 
 export default function UpdateBook() {
     const { id } = useParams();
 
     const navigate = useNavigate();
+    const { enqueueSnackbar } = useSnackbar();
 
     const [isLoading, setIsLoading] = useState(true);
     const [title, setTitle] = useState('');
@@ -41,8 +43,18 @@ export default function UpdateBook() {
 
         axios
             .put(`http://localhost:5006/api/books/${id}`, updatedBook)
-            .then(() => navigate('/'))
-            .catch((err) => console.log(err))
+            .then(() => {
+                enqueueSnackbar('Book updated successfully', {
+                    variant: 'success',
+                });
+                navigate('/');
+            })
+            .catch((err) => {
+                enqueueSnackbar(`Error: ${err.response.data.message}`, {
+                    variant: 'error',
+                });
+                console.log(err);
+            })
             .finally(() => setIsLoading(false));
     };
 

@@ -32,7 +32,7 @@ export default function BookCard({ book }) {
                 <Link to={`/books/details/${book._id}`}>
                     <BsInfoCircle className='text-2xl text-gray-200 hover:text-pink-200' />
                 </Link>
-                <Link to={`/books/edit/${book._id}`}>
+                <Link to={`/books/update/${book._id}`}>
                     <AiOutlineEdit className='text-2xl text-amber-200 hover:text-pink-200' />
                 </Link>
                 <Link to={`/books/delete/${book._id}`}>
