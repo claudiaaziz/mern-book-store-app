@@ -2,14 +2,23 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import BackButton from '../components/BackButton';
+import Spinner from '../components/Spinner';
 
 export default function CreateBook() {
+    const navigate = useNavigate();
+
+    const [isLoading, setIsLoading] = useState(false);
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [publishYear, setPublishYear] = useState('');
-    const navigate = useNavigate();
 
-    const handleCreateBook = () => {
+    const handleCreateBook = (e) => {
+        e.preventDefault();
+
+        if (isLoading) return;
+
+        setIsLoading(true);
+
         const createdBook = {
             title,
             author,
@@ -19,7 +28,8 @@ export default function CreateBook() {
         axios
             .post('http://localhost:5006/api/books', createdBook)
             .then(() => navigate('/'))
-            .catch((err) => console.log(err));
+            .catch((err) => console.log(err))
+            .finally(() => setIsLoading(false));
     };
 
     return (
@@ -30,10 +40,13 @@ export default function CreateBook() {
                 <h1 className='text-3xl my-4'>Create Book</h1>
             </div>
 
+            {isLoading && <Spinner />}
+
             <form
                 onSubmit={handleCreateBook}
                 className='flex flex-col border-2 border-pink-50 rounded-xl w-[600px] p-4 mx-auto'
             >
+
                 <div className='my-4'>
                     <label
                         htmlFor='title'
@@ -82,6 +95,7 @@ export default function CreateBook() {
                         placeholder='Publish Year'
                     />
                 </div>
+
                 <button className='p-2 bg-pink-400 m-8 text-white rounded-full'>
                     Create
                 </button>
